@@ -1,32 +1,24 @@
-name: My First Workflow
+name: PHP CI
 
 on:
   push:
+  pull_request:
 
 jobs:
-  hello:
+  test:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Say Hello
-        run: echo "Hello from GitHub Actions!"
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
 
-      - name: Show current directory
-        run: pwd
-
-      - name: List files
-        run: ls -la
-      - name: Show Git version
-        run: git --version
-
-      - name: Show OS
-        run: uname -a
-
-      - name: Show PHP version
+      - name: Check PHP
         run: php --version
 
-      - name: Show Docker version
-        run: docker --version
+      - name: Run PHP syntax check
+        run: php -l test.php
