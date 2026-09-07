@@ -19,3 +19,14 @@ jobs:
 
       - name: List files
         run: ls -la
+      - name: Show Git version
+        run: git --version
+
+      - name: Show OS
+        run: uname -a
+
+      - name: Show PHP version
+        run: php --version
+
+      - name: Show Docker version
+        run: docker --version
